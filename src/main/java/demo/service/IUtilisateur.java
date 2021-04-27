@@ -1,5 +1,8 @@
 package demo.service;
 
+
+import java.util.List;
+
 import demo.model.Utilisateur;
 
 public interface IUtilisateur {
@@ -13,4 +16,6 @@ public interface IUtilisateur {
 	boolean isBibliothecaire(Utilisateur utilisateur);
 	//COMMENTAIRE GRATUIT JUSTE COMME EXERCICE
 	// deuxieme modif
+
+	List<Utilisateur> listUtilisateurs();
 }

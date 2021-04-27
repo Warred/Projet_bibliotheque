@@ -1,5 +1,7 @@
 package demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,11 @@ public class UtilisateurService implements IUtilisateur{
 	public boolean isBibliothecaire(Utilisateur utilisateur) {
 		boolean biblio = utilisateur instanceof Bibliothecaire;
 		return biblio;
+	}
+
+	@Override
+	public List<Utilisateur> listUtilisateurs() {
+		return utilisateurDao.findAll();
 	}
 
 }
