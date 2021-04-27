@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import demo.dao.UtilisateurRepository;
+import demo.model.Bibliothecaire;
+import demo.model.Emprunteur;
 import demo.model.Utilisateur;
 
 @Service
