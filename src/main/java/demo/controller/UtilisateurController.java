@@ -22,7 +22,7 @@ public class UtilisateurController {
 		return utilisateurService.inscrire(utilisateur);	
 	}
 	
-	@GetMapping
+	@GetMapping("/listUtilisateurs")
 	public List<Utilisateur> getUtilisateurs() {
 		return utilisateurService.listUtilisateurs();
 	}
