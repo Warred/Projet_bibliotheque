@@ -11,5 +11,5 @@ public interface IUtilisateur {
 	
 	boolean isEmprunteur(Utilisateur utilisateur);
 	boolean isBibliothecaire(Utilisateur utilisateur);
-	
+	//COMMENTAIRE GRATUIT JUSTE COMME EXERCICE
 }
