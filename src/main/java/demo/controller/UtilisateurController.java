@@ -14,9 +14,9 @@ public class UtilisateurController {
 	@Autowired
 	IUtilisateur utilisateurService;
 	
-	@PostMapping
+	@PostMapping("/inscrire")
 	public Utilisateur addUtilisateur(@RequestBody Utilisateur utilisateur) {
-		return utilisateurService.inscrire(utilisateur);		
+		return utilisateurService.inscrire(utilisateur);	
 	}
 
 }
