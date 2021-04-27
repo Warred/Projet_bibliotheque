@@ -3,6 +3,7 @@ package demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import demo.model.Utilisateur;
 import demo.service.IUtilisateur;
 
 @RestController
+@CrossOrigin
 public class UtilisateurController {
 	
 	@Autowired
