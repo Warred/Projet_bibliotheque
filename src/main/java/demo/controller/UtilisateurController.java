@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import demo.model.Bibliothecaire;
-import demo.model.Emprunteur;
 import demo.model.Utilisateur;
 import demo.service.IUtilisateur;
 
@@ -21,17 +19,12 @@ public class UtilisateurController {
 	@Autowired
 	IUtilisateur utilisateurService;
 	
-	@PostMapping("/inscrireEmprunteur")
-	public Utilisateur addUtilisateur(@RequestBody Emprunteur emprunteur) {
-		return utilisateurService.inscrire(emprunteur);	
+	@PostMapping("/inscrireUtilisateur")
+	public Utilisateur addUtilisateur(@RequestBody Utilisateur utilisateur) {
+		return utilisateurService.inscrire(utilisateur);	
 	}
 	
-	@PostMapping("/inscrireBibliothecaire")
-	public Utilisateur addUtilisateur(@RequestBody Bibliothecaire bibliothecaire) {
-		return utilisateurService.inscrire(bibliothecaire);	
-	}
-	
-	@GetMapping("/listUtilisateurs")
+	@GetMapping("/listeUtilisateurs")
 	public List<Utilisateur> getUtilisateurs() {
 		return utilisateurService.listUtilisateurs();
 	}
