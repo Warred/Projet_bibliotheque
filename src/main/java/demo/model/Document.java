@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE_DOC")
+@DiscriminatorColumn(name="Type_Document")
 public class Document {
 
 	@Id

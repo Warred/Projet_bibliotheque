@@ -17,7 +17,7 @@ public class Livre extends Document{
 	
 	@Size (min=1, message = "La taille du support est forcement d'au moins une page!")
 	@NotEmpty (message = "Le type de support est obligatoire!")
-	private String typeDePublication; //livre, magazine, journal
+	private String typeDePublication; //livre, magazine, journal, flyer, autre
 
 	public Integer getNombrePage() {
 		return nombrePage;
