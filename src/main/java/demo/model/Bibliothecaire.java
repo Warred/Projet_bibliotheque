@@ -1,7 +1,9 @@
 package demo.model;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
 @DiscriminatorValue(value="BIBLIO")
 public class Bibliothecaire extends Utilisateur {
 

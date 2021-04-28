@@ -1,7 +1,9 @@
 package demo.model;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
 @DiscriminatorValue(value="EMPRUNTEUR")
 public class Emprunteur extends Utilisateur {
 
