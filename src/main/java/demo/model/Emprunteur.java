@@ -10,8 +10,8 @@ public class Emprunteur extends Utilisateur {
 	 */
 	private static final long serialVersionUID = -4880204505908196017L;
 	
-	private Integer empruntMax;
-	private Integer empruntEffectue;
+	private Integer empruntMax=3;
+	private Integer empruntEffectue=0;
 	
 	public Integer getEmpruntMax() {
 		return empruntMax;
