@@ -11,29 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import demo.model.Bibliothecaire;
 import demo.model.Emprunteur;
-import demo.model.Utilisateur;
-import demo.service.IUtilisateur;
+import demo.model.Bibliothecaire;
+import demo.service.IBibliothecaire;
 
 @RestController
 @CrossOrigin
-public class UtilisateurController {
+public class BibliothecaireController {
 	
 	@Autowired
-	IUtilisateur utilisateurService;
-	
-	@PostMapping("/inscrireEmprunteur")
-	public Utilisateur addUtilisateur(@RequestBody Emprunteur emprunteur) {
-		return utilisateurService.inscrire(emprunteur);	
-	}
+	IBibliothecaire bibliothecaireService;
 	
 	@PostMapping("/inscrireBibliothecaire")
-	public Utilisateur addUtilisateur(@RequestBody Bibliothecaire bibliothecaire) {
-		return utilisateurService.inscrire(bibliothecaire);	
-	}
-	
-	@GetMapping("/listUtilisateurs")
-	public List<Utilisateur> getUtilisateurs() {
-		return utilisateurService.listUtilisateurs();
+	public Bibliothecaire addBibliothecaire(@RequestBody Bibliothecaire bibliothecaire) {
+		return bibliothecaireService.inscrire(bibliothecaire);	
 	}
 
 }
