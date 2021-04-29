@@ -1,37 +1,50 @@
 package demo.model;
 
-import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
+@Table(name = "utilisateur")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Utilisateur")
-public class Utilisateur implements Serializable {
+public class Utilisateur implements UserDetails {	
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -46830939473067630L;
+	private static final long serialVersionUID = -2063470082902241712L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private static final String SEQ = "users_seq";
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ)
+    @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
+    private Long id;
 	
 	@Size (min=2, max=12, message="Le pseudo doit comprendre entre 2 et 12 caractéres")
-	@NotEmpty(message="Le champ pseudo est obligatoire.")
-	private String pseudo;
-	
-	@NotEmpty(message="Le champ mot de passe est obligatoire.")
-	private String password;
+	@Column(unique = true, nullable = false)
+	private String username;
 	
 	@Size (min=2, max=20, message="Le nom doit comprendre entre 2 et 20 caractéres")
 	@NotEmpty(message="Le champ nom est obligatoire.")
@@ -40,31 +53,66 @@ public class Utilisateur implements Serializable {
 	@Size (min=2, max=20, message="Le prénom doit comprendre entre 2 et 20 caractéres")
 	@NotEmpty(message="Le champ prénom est obligatoire.")
 	private String prenom;
+	
+	@JsonIgnore
+    @Column(name = "password_hash", nullable = false)
+	private String password;
+	
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_authority",
+            joinColumns = { @JoinColumn(name="users_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "authority_name", referencedColumnName = "name") }
+    )
+    private Set<Authority> authorities = new HashSet<>();
 
+/////////////////////////////////////////////////////////////////
+
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+///////////////////////////////////////////////////////////////////////
+	
 	public Utilisateur() {}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getPseudo() {
-		return pseudo;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getNom() {
@@ -83,10 +131,25 @@ public class Utilisateur implements Serializable {
 		this.prenom = prenom;
 	}
 
-	@Override
-	public String toString() {
-		return "Utilisateur [id=" + id + ", pseudo=" + pseudo + ", password=" + password + ", nom=" + nom + ", prenom="
-				+ prenom + "]";
+	public String getPassword() {
+		return password;
 	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
+	
+
+
+
 	
 }

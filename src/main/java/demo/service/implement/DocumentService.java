@@ -1,4 +1,4 @@
-package demo.service;
+package demo.service.implement;
 
 import java.util.List;
 
@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import demo.dao.DocumentRepository;
-import demo.model.Bibliothecaire;
 import demo.model.Disque;
-import demo.model.Emprunteur;
 import demo.model.Livre;
+import demo.service.IDocument;
 import demo.model.Document;
 
 @Service

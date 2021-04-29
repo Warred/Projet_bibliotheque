@@ -1,14 +1,12 @@
 package demo.dao;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import demo.model.Utilisateur;
 
+@Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer>{
 
-	boolean existsByPseudoAndPassword(String pseudo, String password);
-	
-	Utilisateur findByPseudoAndPassword(String pseudo, String password);
+	Utilisateur findByUsername(String username);
 }

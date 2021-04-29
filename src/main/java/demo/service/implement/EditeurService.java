@@ -1,4 +1,4 @@
-package demo.service;
+package demo.service.implement;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import demo.dao.EditeurRepository;
 import demo.model.Editeur;
+import demo.service.IEditeur;
 
 @Service
 public class EditeurService implements IEditeur{
