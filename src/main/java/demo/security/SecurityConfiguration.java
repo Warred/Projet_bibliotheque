@@ -35,7 +35,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
+    // OKOKOKK
+    //test git
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception  {
