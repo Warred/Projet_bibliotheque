@@ -11,6 +11,8 @@ public class UtilisateurDTO {
 
 	private Long id;
     private String username;
+    private String nom;
+    private String prenom;
     private Set<String> authorities;
 
     public UtilisateurDTO() {
@@ -19,6 +21,8 @@ public class UtilisateurDTO {
     public UtilisateurDTO(Utilisateur utilisateur) {
         this.id = utilisateur.getId();
         this.username = utilisateur.getUsername();
+        this.nom = utilisateur.getNom();
+        this.prenom = utilisateur.getPrenom();
         this.authorities = utilisateur.getAuthorities()
                                .stream()
                                .map(Authority::getAuthority)
@@ -40,8 +44,24 @@ public class UtilisateurDTO {
     public void setUsername(String username) {
         this.username = username;
     }
+    
+    public String getNom() {
+		return nom;
+	}
 
-    public Set<String> getAuthorities() {
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public Set<String> getAuthorities() {
         return authorities;
     }
 

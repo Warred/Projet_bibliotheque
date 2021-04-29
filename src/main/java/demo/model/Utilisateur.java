@@ -17,12 +17,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "utilisateur")
@@ -42,16 +41,11 @@ public class Utilisateur implements UserDetails {
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
     private Long id;
 	
-	@Size (min=2, max=12, message="Le pseudo doit comprendre entre 2 et 12 caractéres")
 	@Column(unique = true, nullable = false)
 	private String username;
 	
-	@Size (min=2, max=20, message="Le nom doit comprendre entre 2 et 20 caractéres")
-	@NotEmpty(message="Le champ nom est obligatoire.")
 	private String nom;
 	
-	@Size (min=2, max=20, message="Le prénom doit comprendre entre 2 et 20 caractéres")
-	@NotEmpty(message="Le champ prénom est obligatoire.")
 	private String prenom;
 	
 	@JsonIgnore
@@ -98,6 +92,15 @@ public class Utilisateur implements UserDetails {
 ///////////////////////////////////////////////////////////////////////
 	
 	public Utilisateur() {}
+	
+	public Utilisateur(Long id, String username, String password, String nom, String prenom, Set<Authority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.authorities = authorities;
+    }
 
 	public Long getId() {
 		return id;
@@ -147,9 +150,12 @@ public class Utilisateur implements UserDetails {
 		this.authorities = authorities;
 	}
 
+	@Override
+	public String toString() {
+		return "Utilisateur [id=" + id + ", username=" + username + ", nom=" + nom + ", prenom=" + prenom
+				+ ", password=" + password + ", authorities=" + authorities + "]";
+	}
+
 	
-
-
-
 	
 }

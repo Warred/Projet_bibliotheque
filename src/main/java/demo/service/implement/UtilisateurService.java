@@ -40,6 +40,8 @@ public class UtilisateurService implements IUtilisateur{
         Utilisateur userToCreate = new Utilisateur();
         userToCreate.setUsername(user.getUsername());
         userToCreate.setPassword(passwordEncoder.encode(user.getPassword()));
+        userToCreate.setNom(user.getNom());
+        userToCreate.setPrenom(user.getPrenom());
         Set<Authority> authorities = new HashSet<>();
         Authority authority = new Authority(AuthorityConstant.ROLE_USER);
         authorities.add(authority);

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.controller.exception.UsernameAlreadyExistException;
@@ -18,14 +19,17 @@ import demo.service.IUtilisateur;
 
 
 @RestController
-@CrossOrigin
 public class UtilisateurController {
 	
 	@Autowired
 	IUtilisateur utilisateurService;
 	
-	@PostMapping("/insrireUtilisateur")
-    public ResponseEntity<Long> register(@RequestBody UserSecurity user){
+	@CrossOrigin
+	@PostMapping("/inscrireUtilisateur")
+    public ResponseEntity<Long> register(@RequestBody UserSecurity user,
+    		@RequestParam String role
+    		){
+		System.out.println(role);
         UtilisateurDTO userDTO = utilisateurService.findUserByUsername(user.getUsername());
         if(userDTO != null) throw new UsernameAlreadyExistException();
         Long idCreated = utilisateurService.registerUser(user);
