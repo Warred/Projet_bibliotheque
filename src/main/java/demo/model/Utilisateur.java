@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "utilisateur")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Utilisateur")
+@DiscriminatorValue(value="UTILISATEUR")
 public class Utilisateur implements UserDetails {	
 
 	/**

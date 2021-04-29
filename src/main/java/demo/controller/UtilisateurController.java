@@ -32,7 +32,7 @@ public class UtilisateurController {
 		System.out.println(role);
         UtilisateurDTO userDTO = utilisateurService.findUserByUsername(user.getUsername());
         if(userDTO != null) throw new UsernameAlreadyExistException();
-        Long idCreated = utilisateurService.registerUser(user);
+        Long idCreated = utilisateurService.registerUser(user, role);
         return ResponseEntity.ok(idCreated);
     }
 	

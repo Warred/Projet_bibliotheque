@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value="BIBLIO")
+@DiscriminatorValue(value="BIBLIOTHECAIRE")
 public class Bibliothecaire extends Utilisateur {
 
 	/**
