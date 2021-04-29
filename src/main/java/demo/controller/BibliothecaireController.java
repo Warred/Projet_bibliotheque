@@ -16,9 +16,5 @@ public class BibliothecaireController {
 	@Autowired
 	IBibliothecaire bibliothecaireService;
 	
-	@PostMapping("/inscrireBibliothecaire")
-	public Bibliothecaire addBibliothecaire(@RequestBody Bibliothecaire bibliothecaire) {
-		return bibliothecaireService.inscrire(bibliothecaire);	
-	}
 
 }

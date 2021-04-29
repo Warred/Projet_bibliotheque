@@ -35,8 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-    // OKOKOKK
-    //test git
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception  {
@@ -48,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                     .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
-                    .antMatchers("/login", "/inscrireUtilisateur", "/public/**", "/**").permitAll()
+                    .antMatchers("/login", "/inscrireUtilisateur", "/public/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

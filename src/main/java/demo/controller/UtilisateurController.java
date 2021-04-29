@@ -17,14 +17,14 @@ import demo.dto.UtilisateurDTO;
 import demo.model.Utilisateur;
 import demo.service.IUtilisateur;
 
-
+@CrossOrigin
 @RestController
 public class UtilisateurController {
 	
 	@Autowired
 	IUtilisateur utilisateurService;
 	
-	@CrossOrigin
+	
 	@PostMapping("/inscrireUtilisateur")
     public ResponseEntity<Long> register(@RequestBody UserSecurity user,
     		@RequestParam String role

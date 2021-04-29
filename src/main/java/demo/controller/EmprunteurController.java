@@ -16,9 +16,5 @@ public class EmprunteurController {
 	@Autowired
 	IEmprunteur emprunteurService;
 	
-	@PostMapping("/inscrireEmprunteur")
-	public Emprunteur inscrireEmprunteur(@RequestBody Emprunteur emprunteur) {
-		return emprunteurService.inscrire(emprunteur);
-	}
 	
 }
