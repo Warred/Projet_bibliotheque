@@ -11,9 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -22,19 +19,13 @@ public class Editeur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Size(min = 2)
-	@NotEmpty(message = "le champ nom est obligatoire")
+
 	private String nom;
 	
-	
-	@NotNull(message = "le champ dateCreation est obligatoire")
 	private Date dateCreation;
 	
 	private Date dateDisparition;
-	
-	@Size(min = 2)
-	@NotEmpty(message = "le champ pays est obligatoire")
+
 	private String pays;
 	
 	@OneToMany (cascade={CascadeType.PERSIST},  fetch = FetchType.LAZY, mappedBy = "lEditeur")

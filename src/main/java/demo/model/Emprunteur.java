@@ -29,8 +29,6 @@ public class Emprunteur extends Utilisateur {
 	
 	public void setEmpruntEffectue(Integer empruntEffectue) {
 		this.empruntEffectue = empruntEffectue;
-	}
-	
-	
+	}	
 
 }
