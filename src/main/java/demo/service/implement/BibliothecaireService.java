@@ -1,5 +1,7 @@
 package demo.service.implement;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,8 @@ public class BibliothecaireService implements IBibliothecaire {
 	BibliothecaireRepository bibliothecaireDao;
 
 	@Override
-	public Bibliothecaire inscrire(Bibliothecaire bibliothecaire) {
-		bibliothecaire = bibliothecaireDao.save(bibliothecaire);
-		return bibliothecaire;
+	public List<Bibliothecaire> listeBibliothecaires() {
+		return bibliothecaireDao.findAll();
 	}
 
 }
