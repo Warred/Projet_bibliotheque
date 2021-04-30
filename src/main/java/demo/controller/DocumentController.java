@@ -20,8 +20,8 @@ public class DocumentController {
 	IDocument documentService;
 	
 	@PostMapping("/ajoutDocument")
-	public Document addDocument(@RequestBody Document editeur) {
-		return documentService.ajouter(editeur);	
+	public Document addDocument(@RequestBody Document document) {
+		return documentService.ajouter(document);
 	}
 	
 	@GetMapping("/listeDocuments")

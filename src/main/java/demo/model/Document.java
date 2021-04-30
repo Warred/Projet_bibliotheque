@@ -23,19 +23,17 @@ public class Document {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Size(min = 2)
-	@NotEmpty(message = "Le champ nom est obligatoire!")
 	private String nom;
 	
-	@Size(min = 1, max=400, message = "La description doit être entre 1 et 400 caractères!")
-	@NotEmpty
 	private String description;
 	
-	@NotNull(message = "La date d'ajout est obligatoire!")
 	private Date dateAjout;
 	
 	@ManyToOne
 	private Editeur lEditeur;
+	
+	@ManyToOne
+	private Bibliothecaire bibliothecaire;
 
 	public Integer getId() {
 		return id;
@@ -76,4 +74,14 @@ public class Document {
 	public void setlEditeur(Editeur lEditeur) {
 		this.lEditeur = lEditeur;
 	}
+
+	public Bibliothecaire getBibliothecaire() {
+		return bibliothecaire;
+	}
+
+	public void setBibliothecaire(Bibliothecaire bibliothecaire) {
+		this.bibliothecaire = bibliothecaire;
+	}
+	
+	
 }
