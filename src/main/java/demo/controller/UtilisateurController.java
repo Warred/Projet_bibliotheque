@@ -15,6 +15,7 @@ import demo.controller.exception.UsernameAlreadyExistException;
 import demo.dto.UserSecurity;
 import demo.dto.UtilisateurDTO;
 import demo.model.Utilisateur;
+import demo.security.JwtUtils;
 import demo.service.IUtilisateur;
 
 @CrossOrigin
@@ -36,6 +37,12 @@ public class UtilisateurController {
         return ResponseEntity.ok(idCreated);
     }
 	
+	@GetMapping("/account")
+    public ResponseEntity<UtilisateurDTO> getAccount(){
+        String username = JwtUtils.getCurrentUserLogin().orElse("");
+        UtilisateurDTO user = utilisateurService.findUserByUsername(username);
+        return ResponseEntity.ok(user);
+    }
 	
 	@GetMapping("/listeUtilisateurs")
 	public List<Utilisateur> getUtilisateurs() {
