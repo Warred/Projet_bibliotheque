@@ -1,6 +1,8 @@
 package demo.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -34,6 +37,9 @@ public class Document {
 	@ManyToOne
 	@JsonBackReference
 	private Bibliothecaire bibliothecaire;
+	
+	@ManyToMany (mappedBy = "listeDocuments")
+	private List <Auteur> listeAuteurs = new ArrayList <Auteur> ();
 
 	public Integer getId() {
 		return id;
