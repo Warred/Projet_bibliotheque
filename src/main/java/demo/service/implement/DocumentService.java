@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import demo.dao.DocumentRepository;
 import demo.model.Disque;
-import demo.model.Livre;
+import demo.model.Papier;
 import demo.service.IDocument;
 import demo.model.Document;
 
@@ -24,7 +24,7 @@ public class DocumentService implements IDocument{
 	}
 
 	public boolean isPapier(Document document) {
-		boolean emprunteur = document instanceof Livre;
+		boolean emprunteur = document instanceof Papier;
 		return emprunteur;
 	}
 

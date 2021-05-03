@@ -11,6 +11,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Document")
@@ -30,6 +32,7 @@ public class Document {
 	private Editeur lEditeur;
 	
 	@ManyToOne
+	@JsonBackReference
 	private Bibliothecaire bibliothecaire;
 
 	public Integer getId() {

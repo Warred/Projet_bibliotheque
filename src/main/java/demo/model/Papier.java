@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value="LIVRE")
-public class Livre extends Document{
+public class Papier extends Document{
 	
 	private Integer nombrePage;
 
