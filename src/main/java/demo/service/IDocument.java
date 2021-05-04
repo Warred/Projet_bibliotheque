@@ -6,8 +6,8 @@ import demo.model.Document;
 
 public interface IDocument {
 
-	Document ajouter(Document editeur);
-
+	Integer ajouter(Document editeur, String typeDoc);
+	
 	List<Document> listeDocuments();
 
 }

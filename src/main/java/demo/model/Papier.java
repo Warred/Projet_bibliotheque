@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value="LIVRE")
+@DiscriminatorValue(value="Papier")
 public class Papier extends Document{
 	
 	private Integer nombrePage;

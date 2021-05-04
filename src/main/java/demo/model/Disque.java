@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value="DISQUE")
+@DiscriminatorValue(value="Disque")
 public class Disque extends Document{
 	
 	private Integer dureeMinutes;

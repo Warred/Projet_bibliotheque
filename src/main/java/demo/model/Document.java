@@ -88,6 +88,14 @@ public class Document {
 	public void setBibliothecaire(Bibliothecaire bibliothecaire) {
 		this.bibliothecaire = bibliothecaire;
 	}
+
+	public List<Auteur> getListeAuteurs() {
+		return listeAuteurs;
+	}
+
+	public void setListeAuteurs(List<Auteur> listeAuteurs) {
+		this.listeAuteurs = listeAuteurs;
+	}
 	
 	
 }

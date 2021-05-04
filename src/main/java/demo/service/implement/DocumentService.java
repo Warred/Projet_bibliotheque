@@ -18,9 +18,8 @@ public class DocumentService implements IDocument{
 	DocumentRepository documentDao;
 	
 	@Override
-	public Document ajouter(Document document) {
-		document = documentDao.save(document);
-		return document;
+	public Integer ajouter(Document document, String typeDoc) {
+		return documentDao.save(document).getId();
 	}
 
 	public boolean isPapier(Document document) {
