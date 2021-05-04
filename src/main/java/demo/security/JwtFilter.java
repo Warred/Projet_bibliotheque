@@ -29,9 +29,11 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = resolveToken(request);
         if(StringUtils.isNotBlank(token)){
             String username = jwtUtils.getSubject(token);
+            System.out.println("JwtFiler.doFilterInternal : username = " + username);
             if(StringUtils.isNotBlank(username) && SecurityContextHolder.getContext().getAuthentication() == null){
                 UserDetails user = userDetailsService.loadUserByUsername(username);
                 if(jwtUtils.isTokenValid(token, user)){
+                	System.out.println("JwtFilter tokenValid");
                     UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }
@@ -42,8 +44,10 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private String resolveToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
-        if(StringUtils.isNotBlank(token) && token.startsWith("Bearer "))
+        if(StringUtils.isNotBlank(token) && token.startsWith("Bearer ")) {
+        	System.out.println("JwtFilter.resolveToken : ok");
             return token.substring(7);
+        }
         return null;
     }
 }

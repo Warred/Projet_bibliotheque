@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import demo.model.Editeur;
 import demo.service.IEditeur;
 
-@RestController
 @CrossOrigin
+@RestController
 public class EditeurController {
 	
 	@Autowired
