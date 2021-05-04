@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import demo.model.Document;
 import demo.service.IDocument;
 
-@RestController
 @CrossOrigin
+@RestController
 public class DocumentController {
 	
 	@Autowired

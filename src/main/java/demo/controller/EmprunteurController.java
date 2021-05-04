@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import demo.service.IEmprunteur;
 
-@RestController
 @CrossOrigin
+@RestController
 public class EmprunteurController {
 
 	@Autowired

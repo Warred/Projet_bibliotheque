@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import demo.model.Bibliothecaire;
 import demo.service.IBibliothecaire;
 
-@RestController
 @CrossOrigin
+@RestController
 public class BibliothecaireController {
 	
 	@Autowired
