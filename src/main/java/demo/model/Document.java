@@ -1,6 +1,5 @@
 package demo.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,18 +18,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Document")
-public class Document implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5923935174377039604L;
+public class Document {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,10 +35,11 @@ public class Document implements Serializable {
 	private Date dateAjout;
 	
 	@ManyToOne
+	@JsonBackReference(value="doc_editeur")
 	private Editeur lEditeur;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="doc_biblio")
 	private Bibliothecaire bibliothecaire;
 	
 	@ManyToMany(fetch = FetchType.EAGER)

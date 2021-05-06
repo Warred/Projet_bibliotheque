@@ -20,7 +20,7 @@ public class Bibliothecaire extends Utilisateur {
 	private static final long serialVersionUID = -2055638775345286934L;
 	
 	@OneToMany(mappedBy="bibliothecaire", cascade=CascadeType.PERSIST)
-	@JsonManagedReference
+	@JsonManagedReference(value="doc_biblio")
 	private List<Document> documents = new ArrayList<Document>();
 
 	public List<Document> getDocuments() {

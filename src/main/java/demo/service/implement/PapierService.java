@@ -1,13 +1,9 @@
 package demo.service.implement;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import demo.dao.AuteurRepository;
 import demo.dao.PapierRepository;
-import demo.model.Auteur;
 import demo.model.Document;
 import demo.model.Papier;
 import demo.service.IPapier;

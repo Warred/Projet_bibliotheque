@@ -1,29 +1,18 @@
 package demo.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 
 @Entity
-public class Auteur implements Serializable {
-	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -9096718515425358392L;
+public class Auteur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
