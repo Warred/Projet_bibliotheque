@@ -17,21 +17,16 @@ public class PapierService implements IPapier {
 	@Override
 	public Integer ajouter(Document document, String typeDePublication, String nombrePage) {
 		Papier papier = new Papier();
-		
-		papier.setlEditeur(document.getlEditeur());
 		papier.setBibliothecaire(document.getBibliothecaire());
-		papier.setDateAjout(document.getDateAjout());
+		papier.setlEditeur(document.getlEditeur());		
+		papier.setListeAuteurs(document.getListeAuteurs());
+		papier.setNom(document.getNom());		
 		papier.setDescription(document.getDescription());
-		papier.setNom(document.getNom());
-		
+		papier.setDateAjout(document.getDateAjout());		
 		papier.setTypeDePublication(typeDePublication);
 		Integer nbPage = Integer.valueOf(nombrePage);
-		papier.setNombrePage(nbPage);
-		
-		Integer idFinal = papierDao.save(papier).getId();
-		papier.setListeAuteurs(document.getListeAuteurs());
-		papierDao.flush();
-		return idFinal;
+		papier.setNombrePage(nbPage);		
+		return papierDao.save(papier).getId();
 	}
 	
 }
