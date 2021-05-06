@@ -20,4 +20,9 @@ public class BibliothecaireService implements IBibliothecaire {
 		return bibliothecaireDao.findAll();
 	}
 
+	@Override
+	public Bibliothecaire findByUsername(String username) {
+		return bibliothecaireDao.findByUsername(username);
+	}
+
 }

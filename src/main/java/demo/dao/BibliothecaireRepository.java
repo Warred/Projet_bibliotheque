@@ -6,4 +6,5 @@ import demo.model.Bibliothecaire;
 
 public interface BibliothecaireRepository extends JpaRepository<Bibliothecaire, Integer> {
 
+	Bibliothecaire findByUsername(String username);
 }

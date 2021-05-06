@@ -8,4 +8,6 @@ public interface IBibliothecaire {
 
 	List<Bibliothecaire> listeBibliothecaires();
 
+	Bibliothecaire findByUsername(String username);
+
 }

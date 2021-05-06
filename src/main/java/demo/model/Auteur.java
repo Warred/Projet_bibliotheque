@@ -1,17 +1,30 @@
 package demo.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 @Entity
-public class Auteur {
+public class Auteur implements Serializable {
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9096718515425358392L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -22,7 +35,8 @@ public class Auteur {
 
 	private String pays;
 	
-	@ManyToMany 
+	@JsonIgnore
+	@ManyToMany(mappedBy="listeAuteurs")
 	private List <Document> listeDocuments = new ArrayList <Document> ();
 
 	public Integer getId() {
@@ -50,14 +64,6 @@ public class Auteur {
 		this.pays = pays;
 	}
 
-	public List<Document> getListeDocuments() {
-		return listeDocuments;
-	}
-
-	public void setListeDocuments(List<Document> listeDocuments) {
-		this.listeDocuments = listeDocuments;
-	}
-
 	public String getPrenom() {
 		return prenom;
 	}
@@ -66,5 +72,22 @@ public class Auteur {
 		this.prenom = prenom;
 	}
 	
+	public List<Document> getListeDocuments() {
+		return listeDocuments;
+	}
+
+	public void setListeDocuments(List<Document> listeDocuments) {
+		this.listeDocuments = listeDocuments;
+	}
+
+	public boolean addDocument(Document document) {
+		document.addAuteur(this);
+		return listeDocuments.add(document);
+	}
+
+	public boolean removeDocument(Document document) {
+		document.removeAuteur(this);
+		return listeDocuments.remove(document);
+	}
 	
 }

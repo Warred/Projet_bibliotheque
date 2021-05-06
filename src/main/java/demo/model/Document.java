@@ -1,25 +1,36 @@
 package demo.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Document")
-public class Document {
+public class Document implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5923935174377039604L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +49,12 @@ public class Document {
 	@JsonBackReference
 	private Bibliothecaire bibliothecaire;
 	
-	@ManyToMany (mappedBy = "listeDocuments")
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+            name = "auteurs_documents",
+            joinColumns = { @JoinColumn(name="document_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "auteur_id", referencedColumnName = "id") }
+    )
 	private List <Auteur> listeAuteurs = new ArrayList <Auteur> ();
 
 	public Integer getId() {
@@ -96,6 +112,15 @@ public class Document {
 	public void setListeAuteurs(List<Auteur> listeAuteurs) {
 		this.listeAuteurs = listeAuteurs;
 	}
-	
+
+	public boolean addAuteur(Auteur auteur) {
+		auteur.addDocument(this);
+		return listeAuteurs.add(auteur);
+	}
+
+	public boolean removeAuteur(Auteur auteur) {
+		auteur.removeDocument(this);
+		return listeAuteurs.remove(auteur);
+	}	
 	
 }

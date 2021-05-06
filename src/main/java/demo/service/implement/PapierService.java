@@ -1,9 +1,13 @@
 package demo.service.implement;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import demo.dao.AuteurRepository;
 import demo.dao.PapierRepository;
+import demo.model.Auteur;
 import demo.model.Document;
 import demo.model.Papier;
 import demo.service.IPapier;
@@ -23,13 +27,15 @@ public class PapierService implements IPapier {
 		papier.setDateAjout(document.getDateAjout());
 		papier.setDescription(document.getDescription());
 		papier.setNom(document.getNom());
-		papier.setListeAuteurs(document.getListeAuteurs());
 		
 		papier.setTypeDePublication(typeDePublication);
 		Integer nbPage = Integer.valueOf(nombrePage);
 		papier.setNombrePage(nbPage);
 		
-		return papierDao.save(papier).getId();
+		Integer idFinal = papierDao.save(papier).getId();
+		papier.setListeAuteurs(document.getListeAuteurs());
+		papierDao.flush();
+		return idFinal;
 	}
 	
 }
