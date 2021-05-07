@@ -7,7 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @DiscriminatorValue(value="EMPRUNTEUR")
@@ -22,7 +23,9 @@ public class Emprunteur extends Utilisateur {
 	private Integer empruntEffectue=0;
 	
 	@OneToMany(mappedBy="emprunteur", cascade=CascadeType.REFRESH)
-	@JsonManagedReference(value="emprunt")
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class , 
+			  property = "id")
 	private List<Document> documentsEmprunts;
 	
 	public Integer getEmpruntMax() {

@@ -17,7 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -29,7 +30,9 @@ public class Document {
 	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonBackReference(value="emprunt")
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class , 
+			  property = "id")
 	private Emprunteur emprunteur;
 	
 	private String nom;
@@ -39,12 +42,17 @@ public class Document {
 	private Date dateAjout;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonBackReference(value="doc_editeur")
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class , 
+			  property = "id")
 	private Editeur lEditeur;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonBackReference(value="doc_biblio")
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class , 
+			  property = "id")
 	private Bibliothecaire bibliothecaire;
+	
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
@@ -52,6 +60,9 @@ public class Document {
             joinColumns = { @JoinColumn(name="document_id", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "auteur_id", referencedColumnName = "id") }
     )
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class , 
+			  property = "id")
 	private List <Auteur> listeAuteurs = new ArrayList <Auteur> ();
 
 	public Integer getId() {

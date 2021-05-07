@@ -8,7 +8,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @DiscriminatorValue(value="BIBLIOTHECAIRE")
@@ -20,7 +21,9 @@ public class Bibliothecaire extends Utilisateur {
 	private static final long serialVersionUID = -2055638775345286934L;
 	
 	@OneToMany(mappedBy="bibliothecaire", cascade=CascadeType.PERSIST)
-	@JsonManagedReference(value="doc_biblio")
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class , 
+			  property = "id")
 	private List<Document> documents = new ArrayList<Document>();
 
 	public List<Document> getDocuments() {

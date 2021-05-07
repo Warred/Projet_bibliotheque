@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Editeur {
@@ -28,8 +28,10 @@ public class Editeur {
 
 	private String pays;
 	
-	@OneToMany (cascade={CascadeType.PERSIST}, mappedBy = "lEditeur", fetch = FetchType.EAGER)
-	@JsonManagedReference(value="doc_editeur")
+	@OneToMany (mappedBy = "lEditeur", fetch = FetchType.EAGER)
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class , 
+			  property = "id")
 	private List <Document> listeDocuments = new ArrayList <Document> ();
 
 	public Integer getId() {
