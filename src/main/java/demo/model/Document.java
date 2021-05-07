@@ -28,7 +28,7 @@ public class Document {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference(value="emprunt")
 	private Emprunteur emprunteur;
 	
@@ -38,11 +38,11 @@ public class Document {
 	
 	private Date dateAjout;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference(value="doc_editeur")
 	private Editeur lEditeur;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference(value="doc_biblio")
 	private Bibliothecaire bibliothecaire;
 	

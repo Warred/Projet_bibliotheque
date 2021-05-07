@@ -36,7 +36,7 @@ public class Bibliothecaire extends Utilisateur {
 		return documents.add(document);
 	}
 
-	public boolean remove(Document document) {
+	public boolean removeDocument(Document document) {
 		document.setBibliothecaire(null);
 		return documents.remove(document);
 	}

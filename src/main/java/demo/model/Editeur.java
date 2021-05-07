@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Editeur {
 
 	private String pays;
 	
-	@OneToMany (cascade={CascadeType.PERSIST}, mappedBy = "lEditeur")
+	@OneToMany (cascade={CascadeType.PERSIST}, mappedBy = "lEditeur", fetch = FetchType.EAGER)
 	@JsonManagedReference(value="doc_editeur")
 	private List <Document> listeDocuments = new ArrayList <Document> ();
 
@@ -78,4 +79,15 @@ public class Editeur {
 	public void setListeDocuments(List<Document> listeDocuments) {
 		this.listeDocuments = listeDocuments;
 	}
+
+	public boolean addDocument(Document document) {
+		document.setlEditeur(this);
+		return listeDocuments.add(document);
+	}
+
+	public boolean removeDocument(Document document) {
+		document.setlEditeur(null);
+		return listeDocuments.remove(document);
+	}
+	
 }
