@@ -28,6 +28,10 @@ public class Document {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@ManyToOne
+	@JsonBackReference(value="emprunt")
+	private Emprunteur emprunteur;
+	
 	private String nom;
 	
 	private String description;
@@ -114,6 +118,14 @@ public class Document {
 	public boolean removeAuteur(Auteur auteur) {
 		auteur.removeDocument(this);
 		return listeAuteurs.remove(auteur);
+	}
+
+	public Emprunteur getEmprunteur() {
+		return emprunteur;
+	}
+
+	public void setEmprunteur(Emprunteur emprunteur) {
+		this.emprunteur = emprunteur;
 	}	
 	
 }

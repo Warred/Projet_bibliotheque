@@ -1,7 +1,13 @@
 package demo.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @DiscriminatorValue(value="EMPRUNTEUR")
@@ -14,6 +20,10 @@ public class Emprunteur extends Utilisateur {
 	
 	private Integer empruntMax=3;
 	private Integer empruntEffectue=0;
+	
+	@OneToMany(mappedBy="emprunteur", cascade=CascadeType.REFRESH)
+	@JsonManagedReference(value="emprunt")
+	private List<Document> documentsEmprunts;
 	
 	public Integer getEmpruntMax() {
 		return empruntMax;
@@ -29,6 +39,28 @@ public class Emprunteur extends Utilisateur {
 	
 	public void setEmpruntEffectue(Integer empruntEffectue) {
 		this.empruntEffectue = empruntEffectue;
+	}
+
+	public List<Document> getDocumentsEmprunts() {
+		return documentsEmprunts;
+	}
+
+	public void setDocumentsEmpruntés(List<Document> documentsEmpruntés) {
+		this.documentsEmprunts = documentsEmpruntés;
+	}
+
+	public boolean addDocumentsEmpruntés(Document document) {
+		if (this.empruntEffectue < this.empruntMax && document.getEmprunteur() == null) {
+			document.setEmprunteur(this);
+			this.empruntEffectue++;
+			return documentsEmprunts.add(document);
+		} else return false;		
+	}
+
+	public boolean removeDocumentsEmpruntés(Document document) {
+		document.setEmprunteur(null);
+		this.empruntEffectue--;
+		return documentsEmprunts.remove(document);
 	}	
 
 }

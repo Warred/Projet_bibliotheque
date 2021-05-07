@@ -10,4 +10,6 @@ public interface IDocument {
 	
 	List<Document> listeDocuments();
 
+	Document findById(Integer id);
+
 }

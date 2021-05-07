@@ -37,4 +37,9 @@ public class DocumentService implements IDocument{
 		return documentDao.findAll();
 	}
 
+	@Override
+	public Document findById(Integer id) {
+		return documentDao.findById(id).orElse(null);
+	}
+
 }

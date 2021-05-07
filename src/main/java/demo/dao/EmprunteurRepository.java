@@ -6,4 +6,6 @@ import demo.model.Emprunteur;
 
 public interface EmprunteurRepository extends JpaRepository<Emprunteur, Integer> {
 
+	Emprunteur findByUsername(String username);
+
 }
