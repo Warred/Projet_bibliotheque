@@ -26,4 +26,9 @@ public class AuteurService implements IAuteur{
 		return auteurDao.findAll();
 	}
 
+	@Override
+	public Auteur findById(Integer id) {
+		return auteurDao.findById(id).orElse(null);
+	}
+
 }

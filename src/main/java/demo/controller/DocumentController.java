@@ -36,10 +36,12 @@ public class DocumentController {
 			@RequestParam(required = false) String typeDisque,
 			@RequestParam(required = false) String dureeMinutes
 			) {
-		if (typeDoc.equals("papier")) {
-			return papierService.ajouter(document, typeDePublication, nombrePage);			
-		} else if (typeDoc.equals("disque")) {
-			return disqueService.ajouter(document, typeDisque, dureeMinutes);
+		if (typeDoc != null) {
+			if (typeDoc.equals("papier")) {
+				return papierService.ajouter(document, typeDePublication, nombrePage);			
+			} else if (typeDoc.equals("disque")) {
+				return disqueService.ajouter(document, typeDisque, dureeMinutes);
+			}
 		}
 		return documentService.ajouter(document, typeDoc);
 	}

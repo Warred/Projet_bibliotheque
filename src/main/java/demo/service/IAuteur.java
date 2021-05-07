@@ -10,5 +10,7 @@ public interface IAuteur {
 
 	List<Auteur> listeAuteurs();
 
+	Auteur findById(Integer id);
+
 }
 
