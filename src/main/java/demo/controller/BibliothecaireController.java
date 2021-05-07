@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.model.Bibliothecaire;
+import demo.model.Document;
 import demo.service.IBibliothecaire;
 
 @CrossOrigin
@@ -24,8 +25,14 @@ public class BibliothecaireController {
 	}
 	
 	@GetMapping("/bibliothecaireByUsername/{username}")
-	public Bibliothecaire getBibliothecaireById( @PathVariable("username") String username) {
+	public Bibliothecaire getBibliothecaireByUsername( @PathVariable("username") String username) {
 		return bibliothecaireService.findByUsername(username);
+	}
+	
+	@GetMapping("documentsParUsernameBibliothecaire/{username}")
+	public List<Document> getDocByUsername(@PathVariable("username") String username) {
+		Bibliothecaire bibliothecaire = bibliothecaireService.findByUsername(username);
+		return bibliothecaire.getDocuments();
 	}
 
 }

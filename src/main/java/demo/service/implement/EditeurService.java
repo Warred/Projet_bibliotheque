@@ -26,4 +26,9 @@ public class EditeurService implements IEditeur{
 		return editeurDao.findAll();
 	}
 
+	@Override
+	public Editeur findById(Integer id) {
+		return editeurDao.findById(id).orElse(null);
+	}
+
 }

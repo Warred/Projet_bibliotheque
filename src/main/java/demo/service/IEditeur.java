@@ -10,5 +10,7 @@ public interface IEditeur {
 
 	List<Editeur> listeEditeurs();
 
+	Editeur findById(Integer id);
+
 }
 
