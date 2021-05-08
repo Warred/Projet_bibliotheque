@@ -12,5 +12,7 @@ public interface DocumentRepository extends JpaRepository<Document, Integer>{
 
 	List<Document> findByEmprunteurIsNotNull();
 
+	List<Document> findAllByOrderByIdAsc();
+
 	
 }

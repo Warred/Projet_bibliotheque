@@ -34,7 +34,7 @@ public class DocumentService implements IDocument{
 
 	@Override
 	public List<Document> listeDocuments() {
-		return documentDao.findAll();
+		return documentDao.findAllByOrderByIdAsc();
 	}
 
 	@Override
