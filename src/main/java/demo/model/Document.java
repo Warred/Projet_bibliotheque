@@ -17,9 +17,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Document")
@@ -29,12 +26,6 @@ public class Document {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class , 
-			  property = "id")
-	private Emprunteur emprunteur;
-	
 	private String nom;
 	
 	private String description;
@@ -42,15 +33,9 @@ public class Document {
 	private Date dateAjout;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class , 
-			  property = "id")
 	private Editeur lEditeur;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class , 
-			  property = "id")
 	private Bibliothecaire bibliothecaire;
 	
 	
@@ -60,10 +45,10 @@ public class Document {
             joinColumns = { @JoinColumn(name="document_id", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "auteur_id", referencedColumnName = "id") }
     )
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class , 
-			  property = "id")
 	private List <Auteur> listeAuteurs = new ArrayList <Auteur> ();
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Emprunteur emprunteur;
 
 	public Integer getId() {
 		return id;

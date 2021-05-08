@@ -1,5 +1,7 @@
 package demo.service.implement;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class EmprunteurService implements IEmprunteur {
 	@Override
 	public Long save(Emprunteur emprunteur) {		
 		return emprunteurDao.save(emprunteur).getId();
+	}
+
+	@Override
+	public List<Emprunteur> findAll() {
+		return emprunteurDao.findAll();
 	}
 
 }

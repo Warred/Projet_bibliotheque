@@ -42,4 +42,14 @@ public class DocumentService implements IDocument{
 		return documentDao.findById(id).orElse(null);
 	}
 
+	@Override
+	public List<Document> listeDocumentsDispo() {
+		return documentDao.findByEmprunteurIsNull();
+	}
+
+	@Override
+	public List<Document> listeDocumentsEmpruntes() {
+		return documentDao.findByEmprunteurIsNotNull();
+	}
+
 }

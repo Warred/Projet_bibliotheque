@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -29,9 +30,7 @@ public class Editeur {
 	private String pays;
 	
 	@OneToMany (mappedBy = "lEditeur", fetch = FetchType.EAGER)
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class , 
-			  property = "id")
+	@JsonIgnore
 	private List <Document> listeDocuments = new ArrayList <Document> ();
 
 	public Integer getId() {

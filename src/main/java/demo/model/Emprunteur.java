@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -22,10 +24,8 @@ public class Emprunteur extends Utilisateur {
 	private Integer empruntMax=3;
 	private Integer empruntEffectue=0;
 	
-	@OneToMany(mappedBy="emprunteur", cascade=CascadeType.REFRESH)
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class , 
-			  property = "id")
+	@OneToMany(mappedBy="emprunteur", cascade=CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Document> documentsEmprunts;
 	
 	public Integer getEmpruntMax() {

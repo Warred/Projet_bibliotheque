@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -21,9 +22,7 @@ public class Bibliothecaire extends Utilisateur {
 	private static final long serialVersionUID = -2055638775345286934L;
 	
 	@OneToMany(mappedBy="bibliothecaire", cascade=CascadeType.PERSIST)
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class , 
-			  property = "id")
+	@JsonIgnore
 	private List<Document> documents = new ArrayList<Document>();
 
 	public List<Document> getDocuments() {

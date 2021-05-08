@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -26,10 +28,8 @@ public class Auteur {
 	private String pays;
 	
 	
-	@ManyToMany(mappedBy="listeAuteurs")
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class , 
-			  property = "id")
+	@ManyToMany(mappedBy="listeAuteurs", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List <Document> listeDocuments = new ArrayList <Document> ();
 
 	public Integer getId() {

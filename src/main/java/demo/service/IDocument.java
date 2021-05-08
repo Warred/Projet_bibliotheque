@@ -12,4 +12,8 @@ public interface IDocument {
 
 	Document findById(Integer id);
 
+	List<Document> listeDocumentsDispo();
+
+	List<Document> listeDocumentsEmpruntes();
+
 }

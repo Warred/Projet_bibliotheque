@@ -51,4 +51,13 @@ public class DocumentController {
 		return documentService.listeDocuments();
 	}
 
+	@GetMapping("/listeDocumentsDispo")
+	public List<Document> getDocumentsDispo() {
+		return documentService.listeDocumentsDispo();
+	}
+	
+	@GetMapping("/listeDocumentsEmpruntes")
+	public List<Document> getDocumentsEmpruntes() {
+		return documentService.listeDocumentsEmpruntes();
+	}
 }
