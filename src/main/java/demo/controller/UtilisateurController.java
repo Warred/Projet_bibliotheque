@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.controller.exception.UsernameAlreadyExistException;
+import demo.dto.EmprunteurDTO;
 import demo.dto.UserSecurity;
 import demo.dto.UtilisateurDTO;
 import demo.model.Utilisateur;
 import demo.security.JwtUtils;
+import demo.service.IEmprunteur;
 import demo.service.IUtilisateur;
 
 @CrossOrigin
@@ -24,6 +26,9 @@ public class UtilisateurController {
 	
 	@Autowired
 	IUtilisateur utilisateurService;
+	
+	@Autowired
+	IEmprunteur emprunteurService;
 	
 	
 	@PostMapping("/inscrireUtilisateur")
@@ -38,9 +43,13 @@ public class UtilisateurController {
     }
 	
 	@GetMapping("/account")
-    public ResponseEntity<UtilisateurDTO> getAccount(){
+    public ResponseEntity<Object> getAccount(){
         String username = JwtUtils.getCurrentUserLogin().orElse("");
         UtilisateurDTO user = utilisateurService.findUserByUsername(username);
+        if (user.getAuthorities().contains("ROLE_EMPRUNTEUR")) {
+        	EmprunteurDTO userEmprunteur = emprunteurService.findByID(user.getId());
+        	return ResponseEntity.ok(userEmprunteur);
+        }
         return ResponseEntity.ok(user);
     }
 	

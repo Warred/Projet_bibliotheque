@@ -39,6 +39,7 @@ public class EmprunteurController {
 		Emprunteur emprunteur = emprunteurService.findByUsername(username);
 		Document document = documentService.findById(idDocument);
 		if (emprunteur.addDocumentsEmpruntés(document)) {
+			emprunteur.setEmpruntEffectue(emprunteur.getEmpruntEffectue()+1);
 			return emprunteurService.save(emprunteur);
 		} else return (long) -1;
 	}
@@ -49,6 +50,7 @@ public class EmprunteurController {
 		Emprunteur emprunteur = emprunteurService.findByUsername(username);
 		Document document = documentService.findById(idDocument);
 		if (emprunteur.removeDocumentsEmpruntés(document)) {
+			emprunteur.setEmpruntEffectue(emprunteur.getEmpruntEffectue()-1);
 			return emprunteurService.save(emprunteur);
 		} else return (long) -1;
 	}

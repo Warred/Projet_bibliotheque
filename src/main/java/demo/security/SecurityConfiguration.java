@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         			.csrf().disable()
                     .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
-                    .antMatchers("/login", "/inscrireUtilisateur").permitAll()
+                    .antMatchers("/login", "/inscrireUtilisateur", "/listeDocuments").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import demo.dao.EmprunteurRepository;
+import demo.dto.EmprunteurDTO;
 import demo.model.Emprunteur;
 import demo.service.IEmprunteur;
 
@@ -28,6 +29,11 @@ public class EmprunteurService implements IEmprunteur {
 	@Override
 	public List<Emprunteur> findAll() {
 		return emprunteurDao.findAll();
+	}
+
+	@Override
+	public EmprunteurDTO findByID(Long id) {
+		return emprunteurDao.findById(id);
 	}
 
 }

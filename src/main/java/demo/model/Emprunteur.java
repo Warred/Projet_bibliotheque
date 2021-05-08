@@ -55,14 +55,12 @@ public class Emprunteur extends Utilisateur {
 	public boolean addDocumentsEmpruntés(Document document) {
 		if (this.empruntEffectue < this.empruntMax && document.getEmprunteur() == null) {
 			document.setEmprunteur(this);
-			this.empruntEffectue++;
 			return documentsEmprunts.add(document);
 		} else return false;		
 	}
 
 	public boolean removeDocumentsEmpruntés(Document document) {
 		document.setEmprunteur(null);
-		this.empruntEffectue--;
 		return documentsEmprunts.remove(document);
 	}	
 
