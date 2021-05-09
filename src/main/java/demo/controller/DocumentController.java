@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.model.Document;
+import demo.security.AuthorityConstant;
 import demo.service.IDisque;
 import demo.service.IDocument;
 import demo.service.IPapier;
-import fr.afpa.security.AuthorityConstant;
 
 @CrossOrigin
 @RestController
@@ -65,7 +65,7 @@ public class DocumentController {
 		return documentService.listeDocumentsEmpruntes();
 	}
 	
-	@Secured(demo.security.AuthorityConstant.ROLE_BIBLIOTHECAIRE)
+	@Secured(AuthorityConstant.ROLE_BIBLIOTHECAIRE)
 	@DeleteMapping("/effaceDocument/{id}")
 	public void effaceDocument(@PathVariable("id") Integer id) {
 		documentService.efface(id);

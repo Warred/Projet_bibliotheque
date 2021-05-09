@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import demo.dao.DocumentRepository;
-import demo.model.Disque;
-import demo.model.Papier;
 import demo.service.IDocument;
 import demo.model.Document;
 
