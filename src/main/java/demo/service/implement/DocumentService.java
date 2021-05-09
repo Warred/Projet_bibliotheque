@@ -22,16 +22,6 @@ public class DocumentService implements IDocument{
 		return documentDao.save(document).getId();
 	}
 
-	public boolean isPapier(Document document) {
-		boolean emprunteur = document instanceof Papier;
-		return emprunteur;
-	}
-
-	public boolean isDisque(Document document) {
-		boolean biblio = document instanceof Disque;
-		return biblio;
-	}
-
 	@Override
 	public List<Document> listeDocuments() {
 		return documentDao.findAllByOrderByIdAsc();
@@ -50,6 +40,11 @@ public class DocumentService implements IDocument{
 	@Override
 	public List<Document> listeDocumentsEmpruntes() {
 		return documentDao.findByEmprunteurIsNotNull();
+	}
+
+	@Override
+	public void efface(Integer id) {
+		documentDao.deleteById(id);
 	}
 
 }

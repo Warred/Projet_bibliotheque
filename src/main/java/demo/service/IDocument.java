@@ -16,4 +16,6 @@ public interface IDocument {
 
 	List<Document> listeDocumentsEmpruntes();
 
+	void efface(Integer id);
+
 }
