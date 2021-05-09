@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +57,16 @@ public class UtilisateurController {
 	@GetMapping("/listeUtilisateurs")
 	public List<Utilisateur> getUtilisateurs() {
 		return utilisateurService.listUtilisateurs();
+	}
+	
+	@PutMapping("/modifierUtilisateur")
+	public void modifierUtilisateur(@RequestBody Utilisateur form) {
+		String username = JwtUtils.getCurrentUserLogin().orElse("");
+        UtilisateurDTO userDTO = utilisateurService.findUserByUsername(username);
+        Utilisateur utilisateur = utilisateurService.findUserByDTO(userDTO);
+		utilisateur.setNom(form.getNom());
+		utilisateur.setPrenom(form.getPrenom());
+		utilisateurService.save(utilisateur);
 	}
 
 }

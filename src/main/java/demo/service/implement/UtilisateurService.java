@@ -83,25 +83,26 @@ public class UtilisateurService implements IUtilisateur{
 	        userToCreate.setAuthorities(authorities);
 	        return bibliothecaireDao.save(userToCreate).getId();
 	        
-		} else return null;
-        
+		} else return null;        
     }
-	
-	@Override
-	public boolean isEmprunteur(Utilisateur utilisateur) {
-		boolean emprunteur = utilisateur instanceof Emprunteur;
-		return emprunteur;
-	}
-
-	@Override
-	public boolean isBibliothecaire(Utilisateur utilisateur) {
-		boolean biblio = utilisateur instanceof Bibliothecaire;
-		return biblio;
-	}
 
 	@Override
 	public List<Utilisateur> listUtilisateurs() {
 		return utilisateurDao.findAll();
+	}
+	
+	public void flush() {
+		utilisateurDao.flush();
+	}
+
+	@Override
+	public void save(Utilisateur utilisateur) {
+		utilisateurDao.save(utilisateur);
+	}
+
+	@Override
+	public Utilisateur findUserByDTO(UtilisateurDTO userDTO) {
+		return utilisateurDao.findById(userDTO.getId()).orElse(null);
 	}
 	
 }

@@ -12,9 +12,9 @@ public interface IUtilisateur {
 	
 	UtilisateurDTO findUserByUsername(String username); // spring security
 	Long registerUser(UserSecurity user, String role); // spring security
-	
-	boolean isEmprunteur(Utilisateur utilisateur);
-	boolean isBibliothecaire(Utilisateur utilisateur);
 
 	List<Utilisateur> listUtilisateurs();
+	
+	void save(Utilisateur utilisateur);
+	Utilisateur findUserByDTO(UtilisateurDTO userDTO);
 }
